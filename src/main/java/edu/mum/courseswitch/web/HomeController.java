@@ -23,4 +23,8 @@ public class HomeController {
         userDao.save(new User("John", "Doe", "email@example.com", "passw0rd", false));
         return "index";
     }
+    
+    
+    
+    
 }
