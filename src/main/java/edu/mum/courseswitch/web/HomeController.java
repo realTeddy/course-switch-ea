@@ -7,20 +7,24 @@ package edu.mum.courseswitch.web;
 
 import edu.mum.courseswitch.dao.UserDao;
 import edu.mum.courseswitch.domain.User;
+import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class HomeController {
     
     @Autowired
     private UserDao userDao;
     
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String index() { 
-        userDao.save(new User("John", "Doe", "email@example.com", "passw0rd", false));
-        return "index";
+    public @ResponseBody User index() throws IOException { 
+//        userDao.save(new User("John", "Doe", "email@example.com", "passw0rd", false));
+//        ObjectMapper mapper = new ObjectMapper();
+//        String x = mapper.writeValueAsString(new User("John", "Doe", "email@example.com", "passw0rd", false));
+        return new User("John", "Doe", "email@example.com", "passw0rd", false);
     }
 }

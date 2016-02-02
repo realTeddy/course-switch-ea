@@ -56,5 +56,6 @@
     <bean id="preferenceService" class="edu.mum.courseswitch.service.PreferenceService" />
     <bean id="registrationService" class="edu.mum.courseswitch.service.RegistrationService" />
     <bean id="userService" class="edu.mum.courseswitch.service.UserService" />
+    <bean id="pendingSwitchService" class="edu.mum.courseswitch.service.PendingSwitchService" />
     <bean id="homeController" class="edu.mum.courseswitch.web.HomeController" />
 </beans>
