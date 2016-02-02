@@ -5,7 +5,6 @@
  */
 package edu.mum.courseswitch.web;
 
-import edu.mum.courseswitch.dao.UserDao;
 import edu.mum.courseswitch.domain.User;
 import edu.mum.courseswitch.service.RegistrationService;
 import java.security.Principal;
