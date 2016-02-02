@@ -16,7 +16,7 @@
     <http pattern="/" security="none" />
     <http pattern="/resources/**" security="none" />
     
-    <http>
+    <http security="none">
         <intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/index" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/**" method="POST" access="ROLE_ADMIN" />
