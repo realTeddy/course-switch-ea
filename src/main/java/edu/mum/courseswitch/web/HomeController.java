@@ -17,14 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
     
-    @Autowired
-    private UserDao userDao;
-    
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public @ResponseBody User index() throws IOException { 
-//        userDao.save(new User("John", "Doe", "email@example.com", "passw0rd", false));
-//        ObjectMapper mapper = new ObjectMapper();
-//        String x = mapper.writeValueAsString(new User("John", "Doe", "email@example.com", "passw0rd", false));
-        return new User("John", "Doe", "email@example.com", "passw0rd", false);
+    public String index() {
+        return "index";
     }
 }
