@@ -19,9 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class CourseSwitchController {
     
     @Autowired
-    private UserDao userDao;
-    
-    @Autowired
     private RegistrationService registrationService;
     
     @RequestMapping(path = "/test", method = RequestMethod.GET)

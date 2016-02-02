@@ -16,14 +16,14 @@
     <http pattern="/" security="none" />
     <http pattern="/resources/**" security="none" />
     
-    <http security="none">
+    <http>
         <intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/index" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/**" method="POST" access="ROLE_ADMIN" />
-        <intercept-url pattern="/**" method="GET" access="ROLE_USER" />
+        <!--<intercept-url pattern="/**" method="POST" access="ROLE_ADMIN" />
+        <intercept-url pattern="/**" method="GET" access="ROLE_USER" />-->
         <form-login login-page="/index" authentication-failure-url="/index" 
                     default-target-url="/contacts"/>
-        <logout logout-success-url="/index"/>
+        <logout logout-success-url="/"/>
     </http>
     
     <authentication-manager>
