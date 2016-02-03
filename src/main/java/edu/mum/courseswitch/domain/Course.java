@@ -15,13 +15,14 @@ public class Course implements Serializable {
     public Course() {
     }
 
-    public Course(int id, String code, String title, String description, List<Course> prerequisites, String instructor) {
+    public Course(int id, String code, String title, String description, List<Course> prerequisites, String instructor, int classCapacity) {
         this.id = id;
         this.code = code;
         this.title = title;
         this.description = description;
         this.prerequisites = prerequisites != null ? prerequisites : new ArrayList<Course>();
         this.instructor = instructor;
+        this.classCapacity = classCapacity;
     }
 
     @Id

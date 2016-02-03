@@ -6,7 +6,6 @@
 package edu.mum.courseswitch.web;
 
 import edu.mum.courseswitch.dao.CourseDao;
-import edu.mum.courseswitch.dao.UserDao;
 import edu.mum.courseswitch.domain.Course;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +28,10 @@ public class InstructorController {
     
     @RequestMapping(path = "/instructor", method = RequestMethod.GET)
     public String instructor(Model m) { 
-       Course c1= new Course(1,"CS400","MPP","Modern Programming",new ArrayList<Course>(){{}},"Orlando");
+       Course c1= new Course(1,"CS400","MPP","Modern Programming",new ArrayList<Course>(){{}},"Orlando", 0);
        List<Course> prerequisites=new ArrayList<Course>(){{add(c1);}};
         courseDao.save(c1);        
-        courseDao.save(new Course(2,"CS54","EA","enterprise", prerequisites,"Mike"));
+        courseDao.save(new Course(2,"CS54","EA","enterprise", prerequisites,"Mike", 0));
         m.addAttribute("courses", courseDao.findAll());       
         return "instructorView";
     }

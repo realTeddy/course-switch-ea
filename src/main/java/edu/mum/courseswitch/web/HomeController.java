@@ -49,12 +49,12 @@ public class HomeController {
         User admin = new User("984513", "admin", encoder.encode("123"), "Admin", "", true);
         userDao.save(admin);
 
-        Course course1 = new Course(1, "CS 390", "Fundamental Programming Practices", "This course provides a focused program for enhancing programming and analytical skills in five areas", null, "Professor ...");
-        Course course2 = new Course(2, "CS 401", "Modern Programming Practices", "Current Concepts and Best Practices in Software Development — Knowledge is the Basis of Action", null, "Professor ...");
-        Course course3 = new Course(3, "CS 422", "Database Systems", "Capturing the Organizing Power of Information", null, "Professor ...");
-        Course course4 = new Course(4, "CS 423", "Systems Analysis and Design", "The systems approach is an organized way of dealing with a problem", null, "Professor ...");
-        Course course5 = new Course(5, "CS 425", "Software Engineering", "Knowledge Is the Basis of Action — Principles and Processes for Developing Large-Scale Software Systems", null, "Professor ...");
-        Course course6 = new Course(6, "CS 428", "Software Development with Fund. Design Patterns", "This course is an introduction to 23 GoF (Gang of Four) design patterns.", null, "Professor ...");
+        Course course1 = new Course(1, "CS 390", "Fundamental Programming Practices", "This course provides a focused program for enhancing programming and analytical skills in five areas", null, "Professor ...", 0);
+        Course course2 = new Course(2, "CS 401", "Modern Programming Practices", "Current Concepts and Best Practices in Software Development — Knowledge is the Basis of Action", null, "Professor ...", 0);
+        Course course3 = new Course(3, "CS 422", "Database Systems", "Capturing the Organizing Power of Information", null, "Professor ...", 0);
+        Course course4 = new Course(4, "CS 423", "Systems Analysis and Design", "The systems approach is an organized way of dealing with a problem", null, "Professor ...", 0);
+        Course course5 = new Course(5, "CS 425", "Software Engineering", "Knowledge Is the Basis of Action — Principles and Processes for Developing Large-Scale Software Systems", null, "Professor ...", 0);
+        Course course6 = new Course(6, "CS 428", "Software Development with Fund. Design Patterns", "This course is an introduction to 23 GoF (Gang of Four) design patterns.", null, "Professor ...", 0);
         courseDao.save(course1);
         courseDao.save(course2);
         courseDao.save(course3);

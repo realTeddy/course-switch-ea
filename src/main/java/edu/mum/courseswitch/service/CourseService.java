@@ -10,14 +10,16 @@ import edu.mum.courseswitch.dao.PendingSwitchDao;
 import edu.mum.courseswitch.dao.RegistrationDao;
 import edu.mum.courseswitch.domain.Course;
 import edu.mum.courseswitch.domain.Registration;
-import edu.mum.courseswitch.domain.User;
 import edu.mum.courseswitch.dto.CourseDto;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class CourseService {
 
     @Autowired

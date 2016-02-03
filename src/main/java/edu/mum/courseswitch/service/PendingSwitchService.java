@@ -7,7 +7,10 @@ package edu.mum.courseswitch.service;
 
 import edu.mum.courseswitch.dao.PendingSwitchDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class PendingSwitchService {
     @Autowired
     private PendingSwitchDao pendingSwitchDao;
