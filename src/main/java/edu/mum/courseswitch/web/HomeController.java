@@ -41,12 +41,12 @@ public class HomeController {
     
     @RequestMapping(path = "/initDb", method = RequestMethod.GET)
     public String initDb() {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        User user1 = new User("984511", "john", encoder.encode("123"), "John", "Doe", true);
+        //BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        User user1 = new User("984511", "john", "123", "John", "Doe", true);
         userDao.save(user1);
-        User user2 = new User("984512", "jane", encoder.encode("123"), "Jane", "Doe", true);
+        User user2 = new User("984512", "jane", "123", "Jane", "Doe", true);
         userDao.save(user2);
-        User admin = new User("984513", "admin", encoder.encode("123"), "Admin", "", true);
+        User admin = new User("984513", "admin", "123", "Admin", "", true);
         userDao.save(admin);
 
         Course course1 = new Course(1, "CS 390", "Fundamental Programming Practices", "This course provides a focused program for enhancing programming and analytical skills in five areas", null, "Professor ...", 0);
