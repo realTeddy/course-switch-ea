@@ -16,7 +16,7 @@ public class BlockService {
     @Autowired
     private RegistrationDao registrationDao;
 
-    public List<Block> getBlocks(int userId) {
-        return registrationDao.findByUser_Id(userId).stream().map(r -> r.getBlock()).collect(Collectors.toList());
+    public List<Block> getBlocks(String username) {
+        return registrationDao.findByUser_Username(username).stream().map(r -> r.getBlock()).collect(Collectors.toList());
     }
 }

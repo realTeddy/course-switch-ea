@@ -35,7 +35,7 @@
 
 <!-- AngularJS JavaScript -->
 <script src="<c:url value='/resources/js/angular.min.js' />"></script>
-<script src="<c:url value='/resources/js/app.js' />"></script>
+<script src="<c:url value='/resources/js/app/app.js' />"></script>
 
 <!-- Plugin JavaScript -->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>

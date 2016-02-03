@@ -8,6 +8,7 @@ package edu.mum.courseswitch.service;
 import edu.mum.courseswitch.dao.CourseDao;
 import edu.mum.courseswitch.dao.PendingSwitchDao;
 import edu.mum.courseswitch.dao.RegistrationDao;
+import edu.mum.courseswitch.dao.UserDao;
 import edu.mum.courseswitch.domain.Course;
 import edu.mum.courseswitch.domain.PendingSwitch;
 import edu.mum.courseswitch.domain.Registration;
@@ -20,10 +21,11 @@ public class PreferenceService {
 
     @Autowired
     private RegistrationDao registrationDao;
-    
     @Autowired
     private CourseDao courseDao;
-    
+    @Autowired
+    private UserDao userDao;
+
     @Autowired
     private PendingSwitchDao pendingSwitchDao;
 
@@ -31,8 +33,9 @@ public class PreferenceService {
         return registrationDao.findByCourse_Id(courseId).stream()
                 .map(r -> r.getCourse()).collect(Collectors.toList());
     }
-    
-    public boolean addPreferedCourse(User user, int registrationId, int courseId) {
+
+    public boolean addPreferedCourse(String userName, int registrationId, int courseId) {
+        User user = userDao.findByUsername(userName);
         Registration registration = registrationDao.findOne(registrationId);
         Course course = courseDao.findOne(courseId);
         registration.addPreferedCourse(course);
@@ -47,7 +50,10 @@ public class PreferenceService {
                 pendingSwitchDao.save(new PendingSwitch(otherRegistration.getUser(), otherRegistration, registration.getCourse(), true));
                 return true;
             }
+            return false;
+        } else {
+            pendingSwitchDao.save(new PendingSwitch(user, registration, course, false));
+            return false;
         }
-        return false;
     }
 }

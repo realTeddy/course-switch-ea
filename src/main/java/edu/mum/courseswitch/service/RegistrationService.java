@@ -28,8 +28,8 @@ public class RegistrationService {
     @Autowired
     private PendingSwitchDao pendingSwitchDao;
 
-    public List<RegistrationDto> getRegistrations(int userId) {
-        List<Registration> registrations = registrationDao.findByUser_Id(userId);
+    public List<RegistrationDto> getRegistrations(String username) {
+        List<Registration> registrations = registrationDao.findByUser_Username(username);
 
         List<RegistrationDto> registrationViewModels = new ArrayList<>();
         for (Registration registration : registrations) {
@@ -41,7 +41,7 @@ public class RegistrationService {
                 if (registrationDao.countByBlock_IdAndPreferedCourse_Id(registration.getBlock().getId(), courseViewModel.getCourse().getId()) > 0) {
                     courseViewModel.setIsAvailable(true);
                 }
-                if (pendingSwitchDao.countByUserAndToCourse(userId, courseViewModel.getCourse().getId()) > 0) {
+                if (pendingSwitchDao.countByUser_UsernameAndToCourse_Id(username, courseViewModel.getCourse().getId()) > 0) {
                     courseViewModel.setIsPendingApproval(true);
                 }
             }

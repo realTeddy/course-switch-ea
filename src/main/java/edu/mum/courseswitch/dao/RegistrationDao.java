@@ -18,14 +18,14 @@ import java.util.List;
  */
 public interface RegistrationDao extends JpaRepository<Registration, Integer> {
 
-    public List<Registration> findByUserIdAndBlockStartDateGreaterThan(int userId, Date blockStartDate);
+    public List<Registration> findByUser_UsernameAndBlockStartDateGreaterThan(String username, Date blockStartDate);
 
-    @Query("select distinct pc from Registration r join r.preferedCourses pc where r.user.id = ?1 and r.block.id = ?2")
-    public List<Course> findByUserIdAndBlock_Id(int userId, int blockId);
+    @Query("select distinct pc from Registration r join r.preferedCourses pc where r.user.username = ?1 and r.block.id = ?2")
+    public List<Course> findByUser_UsernameAndBlock_Id(String username, int blockId);
     
     public List<Registration> findByBlock_Id(int blockId);
     
-    public List<Registration> findByUser_Id(int userId);
+    public List<Registration> findByUser_Username(String username);
     
     public List<Registration> findByCourse_Id(int courseId);
     
@@ -37,6 +37,6 @@ public interface RegistrationDao extends JpaRepository<Registration, Integer> {
     public int countByCourse_Id(int courseId);
     
     //Database.getRegistrations().stream().filter(r -> r.getBlock().equals(registration.getBlock()) && r.getCourse().equals(course) && r.getPreferedCourses().contains(registration.getCourse())).findFirst();
-    @Query("select r from Registration r join r.preferedCourses pc where r.block.id = ?1 and r.course.id = ?2 and pc.id = ?3")
+    @Query("select distinct r from Registration r join r.preferedCourses pc where r.block.id = ?1 and r.course.id = ?2 and pc.id = ?3")
     public Registration findByBlockIdAndCourse_IdPreferedCourse_Id(int blockId, int courseId, int preferedCourseId);
 }

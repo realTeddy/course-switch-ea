@@ -1,49 +1,56 @@
 package edu.mum.courseswitch.domain;
 
 import java.io.Serializable;
-import java.util.Objects;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name = "`User`")
+@Entity
+@Table(name = "`Users`")
 public class User implements Serializable {
+
+    public User(String id, String username, String password, String firstName, String lastName, boolean enabled) {
+        this.id = id;
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.enabled = enabled;
+    }
 
     public User() {
     }
-
-//    public User(int id, String firstName, String lastName, String email, String password, boolean isAdmin) {
-//        this.id = id;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.email = email;
-//        this.password = password;
-//        this.isAdmin = isAdmin;
-//    }
-
-    public User(String firstName, String lastName, String email, String password, boolean isAdmin) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.isAdmin = isAdmin;
-    }
-
+    
     @Id
-    @GeneratedValue
-    private int id;
+    private String id;
+    private String username;
     private String firstName;
     private String lastName;
-    private String email;
     private String password;
-    private boolean isAdmin;
+    private boolean enabled;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getFirstName() {
@@ -61,14 +68,6 @@ public class User implements Serializable {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
     
     public String getPassword() {
         return password;
@@ -76,17 +75,5 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setUsername(String username) {
-        email = username;
-    }
-
-    public void setIsAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
-    }
-
-    public boolean getIsAdmin() {
-        return isAdmin;
     }
 }

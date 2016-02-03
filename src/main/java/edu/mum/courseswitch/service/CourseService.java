@@ -27,11 +27,11 @@ public class CourseService {
     @Autowired
     private PendingSwitchDao pendingSwitchDao;
 
-    public List<CourseDto> getCourses(User user, int courseId, int blockId) {
-        List<Course> previousCourses = registrationDao.findByUserIdAndBlockStartDateGreaterThan(user.getId(), new Date()).stream()
+    public List<CourseDto> getCourses(String username, int courseId, int blockId) {
+        List<Course> previousCourses = registrationDao.findByUser_UsernameAndBlockStartDateGreaterThan(username, new Date()).stream()
                 .map(r -> r.getCourse()).collect(Collectors.toList());
 
-        List<Course> alreadyPreferenced = registrationDao.findByUserIdAndBlock_Id(user.getId(), blockId);
+        List<Course> alreadyPreferenced = registrationDao.findByUser_UsernameAndBlock_Id(username, blockId);
 
         List<Course> blockCourses = blockDao.findOne(blockId).getCourses();
 
@@ -41,7 +41,7 @@ public class CourseService {
                 .collect(Collectors.toList());
         List<CourseDto> courseViewModels = new ArrayList<>();
         List<Registration> registrations = registrationDao.findByBlock_Id(blockId);
-        List<Course> pendingSwitches = pendingSwitchDao.findByUserId(user.getId()).stream()
+        List<Course> pendingSwitches = pendingSwitchDao.findByUser_Username(username).stream()
                 .map(p -> p.getToCourse()).collect(Collectors.toList());
         
         for (Course course : courses) {

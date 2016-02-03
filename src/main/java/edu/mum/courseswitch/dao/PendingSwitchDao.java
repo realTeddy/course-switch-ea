@@ -12,9 +12,9 @@ import java.util.List;
 
 public interface PendingSwitchDao extends JpaRepository<PendingSwitch, Integer> {
 
-    public List<PendingSwitch> findByUserId(int userId);
+    public List<PendingSwitch> findByUser_Username(String username);
 
     //anyMatch(p -> p.getUser().equals(user) && p.getToCourse().equals(courseViewModel.getCourse())
-    @Query("select ps from PendingSwitch ps where ps.user.id = ?1 and ps.toCourse.id = ?2")
-    public int countByUserAndToCourse(int userId, int courseId);
+    @Query("select count(distinct ps) from PendingSwitch ps where ps.user.username = ?1 and ps.toCourse.id = ?2")
+    public int countByUser_UsernameAndToCourse_Id(String username, int courseId);
 }

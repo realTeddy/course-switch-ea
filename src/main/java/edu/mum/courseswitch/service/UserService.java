@@ -14,11 +14,11 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
-    public User getUser(String email, String password) {
-        return userDao.findByEmailAndPassword(email, password);
+    public User getUser(String username, String password) {
+        return userDao.findByUsernameAndPassword(username, password);
     }
 
-    public User addUser(String id, String firstName, String lastName, String email, String password) {
-        return userDao.save(new User(firstName, lastName, email, password, false));
+    public User addUser(String id, String username, String firstName, String lastName, String password, boolean enabled) {
+        return userDao.save(new User(id, username, firstName, lastName, password, enabled));
     }
 }

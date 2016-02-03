@@ -10,5 +10,7 @@ import edu.mum.courseswitch.domain.User;
 
 public interface UserDao extends JpaRepository<User, Integer> {
     //filter(s -> s.getEmail().equals(email) && s.getPassword().equals(password)).findAny()
-    public User findByEmailAndPassword(String email, String password);
+    public User findByUsernameAndPassword(String username, String password);
+    
+    public User findByUsername(String username);
 }

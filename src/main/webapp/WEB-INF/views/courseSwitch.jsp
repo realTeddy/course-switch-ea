@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
-    <h:head>
+<html ng-app="app">
+    <head>
         <title>Course Registration Manager</title>
         <jsp:include page="/resources/includes/headtag.jsp" />
-    </h:head>
+    </head>
     <body>
         <jsp:include page="/resources/includes/header.jsp" />
         <section  ng-controller="MainController as vm">
@@ -96,7 +96,7 @@
                         </div>
                         <div class="modal-body">
                             <h5>Please add a course you are already enrolled in</h5>
-                            <h:form id="contactForm" pt:novalidate="">
+                            <form id="contactForm" pt:novalidate="">
                                 <div class="row">
                                     <div class="col-md-6 col-md-offset-3">
                                         <div class="form-group">
@@ -123,7 +123,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </h:form>
+                            </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
