@@ -21,13 +21,6 @@ app.controller('MainController', function ($scope, $http) {
             });
 
     vm.changeCourses = function (block) {
-//        $http.get("getBlockCourses?blockId=" + block.id + "&courseId=" + 0)
-//                .success(function (data, status, headers, config) {
-//                    $scope.newBlockCourses = data;
-//                })
-//                .error(function (data, status, headers, config) {
-//                    alert("AJAX failed!");
-//                });
         for (var i = 0; i < $scope.blocks.length; i++) {
             if ($scope.blocks[i].id == $scope.selectedNewBlockId) {
                 $scope.newBlockCourses = $scope.blocks[i].courses;

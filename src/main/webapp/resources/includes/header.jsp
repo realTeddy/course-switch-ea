@@ -41,7 +41,7 @@
                 <%--</sec:authorize>--%>       
                 <%--<sec:authorize url="/courses/list">--%>
                 <li>
-                    <a href="<c:url value='/courses/list' />">Courses</a>
+                    <a href="<c:url value='/course/list' />">Courses</a>
                 </li>
                 <%--</sec:authorize>--%>
                 <%--<sec:authorize access="hasRole('ROLE_USER')">--%>
