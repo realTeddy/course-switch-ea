@@ -8,6 +8,7 @@ package edu.mum.courseswitch.dto;
 import edu.mum.courseswitch.domain.Block;
 import edu.mum.courseswitch.domain.Course;
 import edu.mum.courseswitch.domain.Registration;
+import edu.mum.courseswitch.domain.Registration_PreferedCourses;
 import edu.mum.courseswitch.domain.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +29,8 @@ public class RegistrationDto {
         this.course = registration.getCourse();
         this.block = registration.getBlock();
         this.preferedCourses = new ArrayList<>();
-        for (Course regCourse : registration.getPreferedCourses()) {
-            this.preferedCourses.add(new CourseDto(regCourse, false, false));
+        for (Registration_PreferedCourses regCourse : registration.getPreferedCourses()) {
+            this.preferedCourses.add(new CourseDto(regCourse.getCourse(), false, false));
         }
     }
 

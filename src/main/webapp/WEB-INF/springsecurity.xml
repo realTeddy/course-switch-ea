@@ -15,6 +15,8 @@
     <!-- needed for security tag lib expression support -->
     <beans:bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" /> 
     
+    <beans:bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>
+    
     <http pattern="/" security="none" />
     <http pattern="/resources/**" security="none" />
     
@@ -25,29 +27,22 @@
         <intercept-url pattern="/initDb" access="IS_AUTHENTICATED_ANONYMOUSLY"/>  
         <intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/" access="IS_AUTHENTICATED_ANONYMOUSLY"/>        
-        <intercept-url pattern="/instructor/**"  access="ROLE_ADMIN" />
+        <intercept-url pattern="/admin/**"  access="ROLE_ADMIN" />
         <intercept-url pattern="/courseSwitch/**" access="ROLE_USER" />
+        <intercept-url pattern="/authed" access="ROLE_USER,ROLE_ADMIN" />
+        <intercept-url pattern="/course/**" access="ROLE_ADMIN" />
         <intercept-url pattern="/**" method="GET" access="ROLE_USER" />
-        <form-login />
-        <logout logout-success-url="/"/>
+        <form-login 
+            login-page="/" 
+            default-target-url="/" 
+            authentication-failure-url="/?error" 
+            username-parameter="username"
+            password-parameter="password"/>
+        <logout logout-success-url="/?logout"/>
     </http>
-
     
-    <!--users-by-username-query="select username, password, enabled from User where username=?"
-    authorities-by-username-query="select username, role from UserRoles where username=?"-->
-    
-    <authentication-manager >
-        <!--<authentication-provider>
-            <user-service>
-                <user name="admin" password="123" authorities="ROLE_ADMIN" />
-                <user name="john" password="123" authorities="ROLE_USER" />
-            </user-service>
-        </authentication-provider>-->
-        <authentication-provider>
-<!--            <password-encoder hash="bcrypt" />-->
-            <jdbc-user-service 
-                data-source-ref="dataSource" />
-        </authentication-provider>
+    <authentication-manager>
+        <authentication-provider ref="customAuthenticationProvider"/>
     </authentication-manager>
     
 </beans:beans>

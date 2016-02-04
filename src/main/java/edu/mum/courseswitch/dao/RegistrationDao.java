@@ -11,11 +11,15 @@ import org.springframework.data.jpa.repository.Query;
 import edu.mum.courseswitch.domain.Registration;
 import java.util.Date;
 import java.util.List;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Tewodros Ayele Assefa
  */
+
+@Transactional(propagation = Propagation.MANDATORY)
 public interface RegistrationDao extends JpaRepository<Registration, Integer> {
 
     public List<Registration> findByUser_UsernameAndBlockStartDateGreaterThan(String username, Date blockStartDate);

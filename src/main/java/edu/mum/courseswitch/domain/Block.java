@@ -39,6 +39,10 @@ public class Block implements Serializable {
     
     @Temporal(TemporalType.DATE)
     private Date startDate;
+    
+    public void addCourse(Course course) {
+        courses.add(course);
+    }
 
     public int getId() {
         return id;
@@ -67,5 +71,30 @@ public class Block implements Serializable {
     @Override
     public String toString() {
         return startDate.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Block other = (Block) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
     }
 }

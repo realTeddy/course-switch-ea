@@ -7,7 +7,10 @@ package edu.mum.courseswitch.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import edu.mum.courseswitch.domain.User;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional(propagation = Propagation.REQUIRED)
 public interface UserDao extends JpaRepository<User, Integer> {
     //filter(s -> s.getEmail().equals(email) && s.getPassword().equals(password)).findAny()
     public User findByUsernameAndPassword(String username, String password);

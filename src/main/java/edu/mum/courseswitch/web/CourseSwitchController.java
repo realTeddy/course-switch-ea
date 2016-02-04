@@ -5,6 +5,8 @@
  */
 package edu.mum.courseswitch.web;
 
+import edu.mum.courseswitch.dao.BlockDao;
+import edu.mum.courseswitch.domain.Block;
 import edu.mum.courseswitch.dto.CourseDto;
 import edu.mum.courseswitch.dto.RegistrationDto;
 import edu.mum.courseswitch.service.CourseService;
@@ -28,6 +30,8 @@ public class CourseSwitchController {
     private PreferenceService preferenceService;
     @Autowired
     private CourseService courseService;
+    @Autowired
+    private BlockDao blockDao;
     
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String courseSwitch() {
@@ -39,6 +43,11 @@ public class CourseSwitchController {
         return registrationService.getRegistrations(principal.getName());
     }
     
+    @RequestMapping(path = "/getBlocks", method = RequestMethod.GET)
+    public @ResponseBody List<Block> getBlocks() {        
+        return blockDao.findAll();
+    }
+    
     @RequestMapping(path = "/getBlockCourses", method = RequestMethod.GET)
     public @ResponseBody List<CourseDto> getBlockCourses(int blockId, int courseId, Principal principal) {
         return courseService.getCourses(principal.getName(), courseId, blockId);
@@ -47,5 +56,10 @@ public class CourseSwitchController {
     @RequestMapping(path = "/addPreferedCourse", method = RequestMethod.GET)
     public @ResponseBody boolean addPreferedCourse(int registrationId, int courseId, Principal principal) {
         return preferenceService.addPreferedCourse(principal.getName(), registrationId, courseId);
+    }
+    
+    @RequestMapping(path = "/addBlockCourse", method = RequestMethod.GET)
+    public @ResponseBody RegistrationDto addBlockCourse(int blockId, int courseId, Principal principal) {
+        return registrationService.addRegistration(principal.getName(), blockId, courseId);
     }
 }

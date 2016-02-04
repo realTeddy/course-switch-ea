@@ -7,6 +7,43 @@ app.controller('MainController', function ($scope, $http) {
     $scope.registrations = [];
     $scope.currentBlock;
     $scope.blockCourses = [];
+    $scope.newBlockCourses = [];
+    $scope.blocks = [];
+    $scope.selectedNewBlockId = null;
+    $scope.selectedCourseId = null;
+    
+    $http.get("getBlocks")
+            .success(function (data, status, headers, config) {
+                $scope.blocks = data;
+            })
+            .error(function (data, status, headers, config) {
+                alert("AJAX failed!");
+            });
+
+    vm.changeCourses = function (block) {
+//        $http.get("getBlockCourses?blockId=" + block.id + "&courseId=" + 0)
+//                .success(function (data, status, headers, config) {
+//                    $scope.newBlockCourses = data;
+//                })
+//                .error(function (data, status, headers, config) {
+//                    alert("AJAX failed!");
+//                });
+        for (var i = 0; i < $scope.blocks.length; i++) {
+            if ($scope.blocks[i].id == $scope.selectedNewBlockId) {
+                $scope.newBlockCourses = $scope.blocks[i].courses;
+            }
+        }
+    }
+    
+    vm.saveNewBlockCourse = function () {
+        $http.get("addBlockCourse?blockId=" + $scope.selectedNewBlockId + "&courseId=" + $scope.selectedCourseId)
+            .success(function (data, status, headers, config) {
+                $scope.registrations.push(data);
+            })
+            .error(function (data, status, headers, config) {
+                alert("AJAX failed!");
+            });
+    }
 
     $http.get("getRegistrations")
             .success(function (data, status, headers, config) {

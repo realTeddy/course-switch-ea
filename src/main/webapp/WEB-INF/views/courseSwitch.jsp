@@ -100,24 +100,15 @@
                                 <div class="row">
                                     <div class="col-md-6 col-md-offset-3">
                                         <div class="form-group">
-                                            <select class="form-control" >
-                                                <option>SELECT BLOCK</option>
-                                                <option>Jan, 2016</option>
-                                                <option>Feb, 2016</option>
-                                                <option>Mar, 2016</option>
-                                                <option>Apr, 2016</option>
-                                                <option>May, 2016</option>
+                                            <select  ng-model="selectedNewBlockId" class="form-control" ng-change="vm.changeCourses()">
+                                                <option selected>SELECT BLOCK</option>
+                                                <option ng-repeat="block in blocks" ng-value="block.id">{{block.startDate}}</option>
                                             </select>
                                             <p class="help-block text-danger"></p>
                                         </div>
                                         <div class="form-group">
-                                            <select class="form-control" >
-                                                <option>SELECT COURSE</option>
-                                                <option>CS 430: Business Intelligence and Data Mining</option>
-                                                <option>CS 456 Software Testing</option>
-                                                <option>CS 465 Operating Systems</option>
-                                                <option>CS 466 Computer Security</option>
-                                                <option>CS 467 Secure Coding Practices</option>
+                                            <select class="form-control" ng-model="selectedCourseId">
+                                                <option ng-repeat="newBlockCourse in newBlockCourses" ng-value="newBlockCourse.id">{{newBlockCourse.title}}</option>
                                             </select>
                                             <p class="help-block text-danger"></p>
                                         </div>
@@ -126,7 +117,7 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">Save</button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="vm.saveNewBlockCourse()">Save</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div><!-- /.modal-content -->

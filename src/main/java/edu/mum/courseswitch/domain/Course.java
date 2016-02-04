@@ -38,6 +38,14 @@ public class Course implements Serializable {
     private String instructor;
     private int classCapacity;
 
+    public void removePrerequisite(Course prerequisite) {
+        prerequisites.remove(prerequisite);
+    }
+
+    public void addPrerequisite(Course course) {
+        prerequisites.add(course);
+    }
+
     public String getInstructor() {
         return instructor;
     }

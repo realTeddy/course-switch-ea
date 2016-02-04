@@ -5,3 +5,7 @@
 .list-group-item input {
 	margin-top: -5px;
 }
+
+body {
+    padding-top: 100px;
+}

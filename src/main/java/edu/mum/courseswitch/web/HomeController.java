@@ -9,10 +9,12 @@ import edu.mum.courseswitch.dao.BlockDao;
 import edu.mum.courseswitch.dao.CourseDao;
 import edu.mum.courseswitch.dao.RegistrationDao;
 import edu.mum.courseswitch.dao.UserDao;
+import edu.mum.courseswitch.dao.UserRolesDao;
 import edu.mum.courseswitch.domain.Block;
 import edu.mum.courseswitch.domain.Course;
 import edu.mum.courseswitch.domain.Registration;
 import edu.mum.courseswitch.domain.User;
+import edu.mum.courseswitch.domain.UserRoles;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class HomeController {
-    
+
     @Autowired
     UserDao userDao;
     @Autowired
@@ -33,20 +35,28 @@ public class HomeController {
     BlockDao blockDao;
     @Autowired
     RegistrationDao registrationDao;
-    
+    @Autowired
+    UserRolesDao userRolesDao;
+
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String index() {
         return "index";
     }
-    
+
     @RequestMapping(path = "/initDb", method = RequestMethod.GET)
     public String initDb() {
-        //BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        User user1 = new User("984511", "john", "123", "John", "Doe", true);
+        UserRoles userRoles1 = new UserRoles("john", "ROLE_USER");
+        userRolesDao.save(userRoles1);
+        UserRoles userRoles2 = new UserRoles("jane", "ROLE_USER");
+        userRolesDao.save(userRoles2);
+        UserRoles userRoles3 = new UserRoles("admin", "ROLE_ADMIN");
+        userRolesDao.save(userRoles3);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        User user1 = new User("984511", "john", encoder.encode("123"), "John", "Doe", true);
         userDao.save(user1);
-        User user2 = new User("984512", "jane", "123", "Jane", "Doe", true);
+        User user2 = new User("984512", "jane", encoder.encode("123"), "Jane", "Doe", true);
         userDao.save(user2);
-        User admin = new User("984513", "admin", "123", "Admin", "", true);
+        User admin = new User("984513", "admin", encoder.encode("123"), "Admin", "", true);
         userDao.save(admin);
 
         Course course1 = new Course(1, "CS 390", "Fundamental Programming Practices", "This course provides a focused program for enhancing programming and analytical skills in five areas", null, "Professor ...", 0);
@@ -75,19 +85,22 @@ public class HomeController {
         Block block1 = new Block(firstBlockCourses, new Date(2016, 1, 1), 1);
         Block block2 = new Block(secondBlockCourses, new Date(2016, 2, 1), 2);
         Block block3 = new Block(thirdBlockCourses, new Date(2016, 3, 1), 3);
+        Block block4 = new Block(thirdBlockCourses, new Date(2016, 4, 1), 3);
+        Block block5 = new Block(thirdBlockCourses, new Date(2016, 5, 1), 3);
         blockDao.save(block1);
         blockDao.save(block2);
         blockDao.save(block3);
-        
-        registrationDao.save(new Registration(user1, block1, course1, null));
-        registrationDao.save(new Registration(user1, block2, course2, null));
-        registrationDao.save(new Registration(user1, block3, course3, null));
+        blockDao.save(block4);
+        blockDao.save(block5);
 
-        registrationDao.save(new Registration(user2, block1, course1, null));
-        registrationDao.save(new Registration(user2, block2, course2, null));
-        registrationDao.save(new Registration(user2, block3, course4, null));
+        registrationDao.save(new Registration(user1, block1, course1));
+        registrationDao.save(new Registration(user1, block2, course2));
+        registrationDao.save(new Registration(user1, block3, course3));
+
+        registrationDao.save(new Registration(user2, block1, course1));
+        registrationDao.save(new Registration(user2, block2, course2));
+        registrationDao.save(new Registration(user2, block3, course4));
         return "index";
     }
-    
-    
+
 }

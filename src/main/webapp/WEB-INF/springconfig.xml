@@ -58,6 +58,7 @@
     <bean id="userService" class="edu.mum.courseswitch.service.UserService" />
     <bean id="pendingSwitchService" class="edu.mum.courseswitch.service.PendingSwitchService" />
     <bean id="homeController" class="edu.mum.courseswitch.web.HomeController" />
+    <bean id="customAuthenticationProvider" class="edu.mum.courseswitch.sec.CustomAuthenticationProvider" />
     
     <bean class="edu.mum.courseswitch.sec.AuthenticationEventListener" />
 </beans>
